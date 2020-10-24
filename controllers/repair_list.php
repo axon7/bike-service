@@ -1,5 +1,6 @@
 <?php
 
+
 $config = require 'config.php';
 
 require 'database/Connection.php';
@@ -8,16 +9,8 @@ $pdo = Connection::make($config['database']);
 $query = new QueryBuilder($pdo);
 
 
-$repairs =  $query->selectAll('repairs');
-
-
-var_dump($repairs);
+$repairs = $query->selectAll('repairs');
 
 
 
-
-require 'views/index.view.php';
-
-
-
-
+require 'views/repair_list.view.php';

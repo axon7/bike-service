@@ -1,19 +1,17 @@
 <?php
 
-$config = require 'config.php';
 
-require 'database/Connection.php';
-require 'database/QueryBuilder.php';
-$pdo = Connection::make($config['database']);
-$query = new QueryBuilder($pdo);
 
 
 require 'Router.php';
 $router = new Router();
 
-$uri = trim($_SERVER['REQUEST_URI'], '/bike-service/');
+$uri = preg_replace( '/\/bike-service\//i', "", $_SERVER['REQUEST_URI']);
+$uri2 = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri3 = preg_replace('/\/bike-service\//i', "", $uri2);
+echo $uri3 . '<br>';
 
-require Router::load('routes.php')-> direct($uri);
+require Router::load('routes.php')-> direct($uri3, $_SERVER['REQUEST_METHOD']);
 
 
 
