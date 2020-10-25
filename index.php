@@ -1,9 +1,9 @@
 <?php
 
+require 'vendor/autoload.php';
 
 
-
-require 'Router.php';
+//require 'Router.php';
 $router = new Router();
 
 $uri = preg_replace( '/\/bike-service\//i', "", $_SERVER['REQUEST_URI']);

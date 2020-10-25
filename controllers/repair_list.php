@@ -9,7 +9,7 @@ $pdo = Connection::make($config['database']);
 $query = new QueryBuilder($pdo);
 
 
-$repairs = $query->selectAll('repairs');
+$names = $query->selectAll('names');
 
 
 

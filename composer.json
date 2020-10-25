@@ -1,0 +1,19 @@
+{
+  "name": "vendor_name/bike-service",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "kubaz",
+      "email": "email@example.com"
+    }
+  ],
+  "require": {
+  },
+  "autoload": {
+    "classmap": [
+      "./"
+    ]
+  }
+}

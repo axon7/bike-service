@@ -14,6 +14,6 @@ $router->get('register', 'controllers/register.php');
 $router->get('add-repair',  'controllers/add_repair.php');
 
 
-$router->post('names','controllers/names.php');
+$router->post('add-repair','controllers/add_repair.php');
 
 
