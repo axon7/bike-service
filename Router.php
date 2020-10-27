@@ -11,10 +11,10 @@ class Router
     public static function load($file)
     {
         $router = new static;
-            var_dump($router);
-            echo '----';
-            var_dump($file);
+
         require $file;
+        var_dump($router);
+
         return $router;
     }
 
