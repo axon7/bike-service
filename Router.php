@@ -2,7 +2,7 @@
 
 class Router
 {
-    protected $routes = [
+    public $routes = [
         'GET' => [],
         'POST' => []
 
@@ -11,14 +11,14 @@ class Router
     public static function load($file)
     {
         $router = new static;
+            var_dump($router);
+            echo '----';
+            var_dump($file);
         require $file;
         return $router;
     }
 
-//    public function define($routes)
-//    {
-//        $this->routes = $routes;
-//    }
+
 
     public function get($uri, $controller){
         $this->routes['GET'][$uri] = $controller;
@@ -32,9 +32,19 @@ class Router
     {
 
         if (array_key_exists($uri, $this->routes[$requestMethod])) {
-            return $this->routes[$requestMethod][$uri];
+            return $this->executeAction(...explode("@", $this->routes[$requestMethod][$uri]));
+        }
+        throw new Exception('No route defined for this URI.');
+    }
+
+    protected function executeAction($controller, $action){
+        $controller = new $controller;
+
+        if(!method_exists($controller, $action)){
+            throw new Exception("controoler have no action");
         }
 
-        throw new Exception('No route defined for this URI.');
+        return $controller->$action();
+
     }
 }

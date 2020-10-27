@@ -1,4 +1,4 @@
-<?php require('views/partials/nav.php') ?>
+<?php require 'views/partials/nav.php' ?>
 
 <?php foreach ($names as $name) :?>
     <li>
