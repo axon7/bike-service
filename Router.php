@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Core;
+
 class Router
 {
     public $routes = [
@@ -11,20 +13,17 @@ class Router
     public static function load($file)
     {
         $router = new static;
-
         require $file;
-        var_dump($router);
-
         return $router;
     }
 
-
-
-    public function get($uri, $controller){
+    public function get($uri, $controller)
+    {
         $this->routes['GET'][$uri] = $controller;
     }
 
-    public function post($uri, $controller){
+    public function post($uri, $controller)
+    {
         $this->routes['POST'][$uri] = $controller;
     }
 
@@ -37,7 +36,10 @@ class Router
         throw new Exception('No route defined for this URI.');
     }
 
-    protected function executeAction($controller, $action){
+    protected function executeAction($controller, $action)
+    {
+
+        $controller = "App\\Controller\\{$controller}";
         $controller = new $controller;
 
         if(!method_exists($controller, $action)){
@@ -45,6 +47,5 @@ class Router
         }
 
         return $controller->$action();
-
     }
 }
